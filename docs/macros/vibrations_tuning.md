@@ -1,6 +1,6 @@
 # Vibrations measurements
 
-The `VIBRATIONS_CALIBRATION` macro helps you to identify the speed settings that exacerbate the vibrations of the machine (ie. where the frame and motors resonate badly). This will help you to find the clean speed ranges where the machine is more silent and less prone to vertical fine artifacts on the prints.
+The `SHAKETUNE_TEST_VIBRATIONS` macro helps you to identify the speed settings that exacerbate the vibrations of the machine (ie. where the frame and motors resonate badly). This will help you to find the clean speed ranges where the machine is more silent and less prone to vertical fine artifacts on the prints.
 
   > **Warning**
   >
@@ -9,18 +9,18 @@ The `VIBRATIONS_CALIBRATION` macro helps you to identify the speed settings that
 
 ## Usage
 
-Call the `VIBRATIONS_CALIBRATION` macro with the direction and speed range you want to measure. Here are the parameters available:
+Call the `SHAKETUNE_TEST_VIBRATIONS` macro with the direction and speed range you want to measure. Here are the parameters available:
 
 | parameters | default value | description |
 |-----------:|---------------|-------------|
-|SIZE|60|size in mm of the area where the movements are done|
+|SIZE|80|size in mm of the area where the movements are done|
 |DIRECTION|"XY"|direction vector where you want to do the measurements. Can be set to either "XY", "AB", "ABXY", "A", "B", "X", "Y", "Z", "E"|
 |Z_HEIGHT|20|z height to put the toolhead before starting the movements. Be careful, if your accelerometer is mounted under the nozzle, increase it to avoid crashing it on the bed of the machine|
-|ACCEL|3000 (or max printer accel)|accel in mm/s^2 used for all the moves. Try to keep it relatively low to avoid bad oscillations that affect the measurements, but but high enough to reach constant speed for >~70% of the segments|
+|ACCEL|2000 (or max printer accel)|accel in mm/s^2 used for all the moves. Try to keep it relatively low to avoid bad oscillations that affect the measurements, but but high enough to reach constant speed for >~70% of the segments|
 |MIN_SPEED|20|minimum speed of the toolhead in mm/s for the movements|
 |MAX_SPEED|200|maximum speed of the toolhead in mm/s for the movements|
 |SPEED_INCREMENT|2|speed increments of the toolhead in mm/s between every movements|
-|TRAVEL_SPEED|200|speed in mm/s used for all the travels moves|
+|TRAVEL_SPEED|60|speed in mm/s used for all the travels moves|
 |ACCEL_CHIP|"adxl345"|accelerometer chip name in the config|
 |KEEP_N_RESULTS|3|Total number of results to keep in the result folder after running the test. The older results are automatically cleaned up|
 |KEEP_CSV|True|Weither or not to keep the CSV data files alonside the PNG graphs (archived in a tarball)|

@@ -1,24 +1,23 @@
-# Axis measurements
+# Axis resonances measurements
 
-The `AXES_SHAPER_CALIBRATION` macro is used to measure and plot the axis behavior in order to tune Klipper's input shaper system.
+The `SHAKETUNE_TEST_RESONANCES` macro is used to measure and plot the axis behavior in order to tune Klipper's input shaper system.
 
 
 ## Usage
 
 **Before starting, ensure that the belts are properly tensioned** and that you already have good and clear belt graphs (see [the previous section](./belts_tuning.md)).
 
-Then, call the `AXES_SHAPER_CALIBRATION` macro and look for the graphs in the results folder. Here are the parameters available:
+Then, call the `SHAKETUNE_TEST_RESONANCES` macro and look for the graphs in the results folder. Here are the parameters available:
 
 | parameters | default value | description |
 |-----------:|---------------|-------------|
 |FREQ_START|5|Starting excitation frequency|
 |FREQ_END|133|Maximum excitation frequency|
 |HZ_PER_SEC|1|Number of Hz per seconds for the test|
-|AXIS|"all"|Axis you want to test in the list of "all", "X" or "Y"|
-|SCV|printer square corner velocity|Square corner velocity you want to use to calculate shaper recommendations. Using higher SCV values usually results in more smoothing and lower maximum accelerations|
-|MAX_SMOOTHING|None|Max smoothing allowed when calculating shaper recommendations|
+|AXIS|"ALL"|Axis you want to test in the list of "ALL", "X" or "y"|
+|MAX_SMOOTHING|0.5|Max smoothing allowed when calculating shaper recommendations|
 |KEEP_N_RESULTS|3|Total number of results to keep in the result folder after running the test. The older results are automatically cleaned up|
-|KEEP_CSV|True|Weither or not to keep the CSV data file alonside the PNG graphs|
+|KEEP_CSV|1|Weither or not to keep the CSV data file alonside the PNG graphs|
 
 
 ## Graphs description
@@ -37,7 +36,7 @@ To effectively analyze input shaper graphs, there is no one-size-fits-all approa
 
 For setting your Input Shaping filters, rely on the auto-computed values displayed in the top right corner of the graph. Here's a breakdown of the legend for a better grasp:
   - **Filtering algortihms**: Klipper automatically computes these lines. This computation works pretty well if the graphs are clean enough. But if your graphs are junk, it can't do magic and will give you pretty bad recommendations. It's better to address the mechanical issues first before continuing. Each shapers has its pro and cons:
-    * `ZV` is a pretty light filter and usually has some remaining vibrations. My recommendation would be to use it only if you want to do speed benchies and get the highest acceleration values while maintaining a low amount of smoothing on your parts. If you have "perfect" graphs and do not care that much about some remaining ringing, you can try it. 
+    * `ZV` is a pretty light filter and usually has some remaining vibrations. My recommendation would be to use it only if you want to do speed benchies and get the highest acceleration values while maintaining a low amount of smoothing on your parts. If you have "perfect" graphs and do not care that much about some remaining ringing, you can try it.
     * `MZV` is usually the top pick for well-adjusted machines. It's a good compromise for low remaining vibrations while still allowing pretty good acceleration values. Keep in mind, `MZV` is only recommended by Klipper on good graphs.
     * `EI` can be used as a fallback for challenging graphs. But first, try to fix your mechanical issues before using it: almost every printer should be able to run `MZV` instead.
     * `2HUMP_EI` and `3HUMP_EI` are last-resort choices. Usually, they lead to a high level of smoothing in order to suppress the ringing while also using relatively low acceleration values. If they pop up as suggestions, it's likely your machine has underlying mechanical issues (that lead to pretty bad or "wide" graphs).

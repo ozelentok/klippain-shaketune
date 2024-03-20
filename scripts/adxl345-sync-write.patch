@@ -1,0 +1,32 @@
+--- a/klippy/extras/adxl345.py
++++ b/klippy/extras/adxl345.py
+@@ -85,23 +89,14 @@ class AccelQueryHelper:
+                 count += 1
+         del samples[count:]
+         return self.samples
++
+     def write_to_file(self, filename):
+-        def write_impl():
+-            try:
+-                # Try to re-nice writing process
+-                os.nice(20)
+-            except:
+-                pass
+-            f = open(filename, "w")
+-            f.write("#time,accel_x,accel_y,accel_z\n")
++        with open(filename, 'w') as f:
++            writer = csv.writer(f, delimiter=',')
++            writer.writerow(['#time', 'accel_x', 'accel_y', 'accel_z'])
+             samples = self.samples or self.get_samples()
+-            for t, accel_x, accel_y, accel_z in samples:
+-                f.write("%.6f,%.6f,%.6f,%.6f\n" % (
+-                    t, accel_x, accel_y, accel_z))
+-            f.close()
+-        write_proc = multiprocessing.Process(target=write_impl)
+-        write_proc.daemon = True
+-        write_proc.start()
++            writer.writerows(samples)
++
+ 
+ # Helper class for G-Code commands
+ class AccelCommandHelper:
