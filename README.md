@@ -1,7 +1,8 @@
 # Klipper ShakeTune Module
 
-Standalone version of [Klippain "Shake&Tune"](https://github.com/Frix-x/klippain-shaketune) designed for non [Klippain](https://github.com/Frix-x/klippain) ecosystems, running as a fully integrated Klipper module
-This repository is a module designed to automate and calibrate the input shaper system on your Klipper 3D printer with a streamlined workflow and insightful vizualisations.
+Proof of concept for turning [Klippain "Shake&Tune"](https://github.com/Frix-x/klippain-shaketune) into a fully integrated Klipper module.
+
+ShakeTune is a module designed to automate and calibrate the input shaper system on your Klipper 3D printer with a streamlined workflow and insightful vizualisations.
 
 It operates in two steps:
   1. Utilizing specially tailored Klipper macros, it initiates tests on either the belts or the printer X/Y axis to measure the machine axes behavior. This is basically an automated call to the Klipper `TEST_RESONANCES` macro with custom parameters.
