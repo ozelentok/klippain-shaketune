@@ -6,7 +6,7 @@ from pathlib import Path
 
 from . import belts, map_axes, resonances, vibrations
 
-RESULTS_PATH = Path.home() / 'klipper-shaketune-results'
+RESULTS_PATH = Path.home() / 'shaketune-results'
 RAW_DATA_PATH = Path('/tmp')
 DPI = 150
 
