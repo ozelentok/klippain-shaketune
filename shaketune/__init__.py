@@ -32,7 +32,7 @@ def process_belts(keep_csv: bool) -> Path:
     png_path = csv_paths[0].parent / f'belts_{t}.png'
     fig.savefig(png_path, dpi=DPI)
 
-    if keep_csv:
+    if not keep_csv:
         for p in csv_paths:
             p.unlink(True)
 
@@ -51,7 +51,7 @@ def process_resonances(axis: str, scv: float, max_smoothing: float | None,
     png_path = csv_path.parent / f'resonances_{t}_{axis}.png'
     fig.savefig(png_path, dpi=DPI)
 
-    if keep_csv:
+    if not keep_csv:
         csv_path.unlink(True)
 
     return png_path
