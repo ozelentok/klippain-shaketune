@@ -143,17 +143,17 @@ def remove_old_files(keep_n_results: int):
     for old_file in old_belts_files:
         file_date = '_'.join(old_file.stem.split('_')[1:3])
         for suffix in ['A', 'B']:
-            csv_file = RESULTS_PATH / 'belts' / f'belts_{file_date}_{suffix}.csv'
+            csv_file = old_file.parent / f'belts_{file_date}_{suffix}.csv'
             csv_file.unlink(True)
         old_file.unlink(True)
 
     for old_file in old_resonances_files:
-        csv_file = RESULTS_PATH / 'resonances' / old_file.with_suffix('.csv')
+        csv_file = old_file.with_suffix('.csv')
         csv_file.unlink(True)
         old_file.unlink(True)
 
     for old_file in old_vibrations_files:
-        tar_file = RESULTS_PATH / 'vibrations' / old_file.with_suffix('.tar.gz')
+        tar_file = old_file.with_suffix('.tar.gz')
         tar_file.unlink(True)
         old_file.unlink(True)
 
